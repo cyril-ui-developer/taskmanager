@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Routes, Route } from "react-router-dom";
 
@@ -7,16 +7,19 @@ import TaskListPage from "./pages/TaskListPage";
 import { deleteTask } from "./redux/taskSlice";
 import AddTaskPage from "./pages/AddTaskPage";
 import Nav from "./components/Nav";
+import { getTasks, addTask } from "./api/tasks";
+
 
 function App() {
   const dispatch = useDispatch();
   const initialTasks = useSelector((state) => state);
-  const [tasks, setTasks] = useState(initialTasks);
+  const [tasks, setTasks] = useState([]);
   //  const [isToggleTaskStatus, setIsToggleTaskStatus] = useState('incomplete')
 
   const onAddTaskHandler = (formValues) => {
     const newTask = { ...formValues, id: tasks.length + 1, completed: false, active: false };
     setTasks([...tasks, newTask]);
+    addTask(formValues.title, formValues.description);
   };
 
   const delTask = (taskId) => {
@@ -33,7 +36,26 @@ function App() {
     });
     setTasks(updatedTasks);
   };
+  // async function getData() {
+  //   const url = "http://localhost:4000/api/v1/tasks";
+  //   try {
+  //     const response = await fetch(url);
+  //     if (!response.ok) {
+  //       throw new Error(`Response status: ${response.status}`);
+  //     }
   
+  //     const json = await response.json();
+  //     console.log(json);
+  //   } catch (error) {
+  //     console.error(error.message);
+  //   }
+  // }
+
+  useEffect(() => {
+  //  getData().then(data => console.log(data));
+  getTasks().then((data) => setTasks(data?.data));
+  }, []);
+
   return (
     <main className="flex items-center justify-center w-screen h-screen font-medium">
       <div className="flex flex-grow items-center justify-center h-full text-gray-600 bg-gray-100">
