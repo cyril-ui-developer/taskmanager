@@ -10,11 +10,11 @@ import (
 func main() {
 	app := fiber.New()
 	type Task struct {
-		ID          string
-		Title       string
-		Description string
-		Completed   bool
-		Active      bool
+		ID          string `json:"id" gorm:"primary_key"`
+		Title       string `json:"title"`
+		Description string `json:"description"`
+		Completed   bool `json:"completed" gorm:"default:false"`
+		Active      bool `json:"active" gorm:"default:true"`
 	}
 	db, err := gorm.Open(mysql.Open("root:root@tcp(localhost:3306)/july7"), &gorm.Config{})
 if err != nil {
@@ -27,7 +27,6 @@ if err != nil {
 	app.Get("/tasks", func(c *fiber.Ctx) error {
 		var tasks []Task
 		db.Find(&tasks)
-		//log.Fatal("&tasks", tasks)
 		return c.JSON(tasks)
 	})
 
