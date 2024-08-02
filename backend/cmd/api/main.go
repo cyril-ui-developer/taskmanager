@@ -10,7 +10,6 @@ import (
 func main() {
 	app := fiber.New()
 	type Task struct {
-		gorm.Model
 		ID          string
 		Title       string
 		Description string
