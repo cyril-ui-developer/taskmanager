@@ -1,24 +1,24 @@
-// package database
+package database
 
-// import (
-// 	"github.com/cyril-ui-developer/july7-task-manager/backend/models"
+import (
+    "gorm.io/gorm"
+    "gorm.io/driver/mysql"
 
-// 	"gorm.io/driver/mysql"
-// 	"gorm.io/gorm"
-// 	_ "github.com/go-sql-driver/mysql"
-// )
+	"github.com/cyril-ui-developer/july7-task-manager/backend/models"
+)
 
-// var DB *gorm.DB
 
-// func Connect() {
-// 	var err error
-// 	DB, err = gorm.Open(mysql.Open("root:july7@tcp(127.0.0.1:3306)/july7"), &gorm.Config{})
-// 	if err != nil {
-// 		panic("could not connect to db")
-// 	}
-// }
+var DB *gorm.DB
 
-// func Automigrate() {
+func Connect() {
+	var err error
+	DB, err = gorm.Open(mysql.Open("root:root@tcp(localhost:3306)/july7"), &gorm.Config{})
+	if err != nil {
+		panic("could not connect to database")
+	}
+}
 
-// 	DB.AutoMigrate(models.Task{})
-// }
+func Automigrate() {
+
+	DB.AutoMigrate(models.Task{})
+}

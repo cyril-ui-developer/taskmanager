@@ -2,9 +2,9 @@ package models
 
 
 type Task struct {
-	Id        uint `json:"-"`
-	Title 	  string
-	Description  string
-	Completed     bool
-	Active   bool
+	ID          string `json:"id" gorm:"primary_key"`
+	Title       string `json:"title"`
+	Description string `json:"description"`
+	Completed   bool `json:"completed" gorm:"default:false"`
+	Active      bool `json:"active" gorm:"default:true"`
 }
