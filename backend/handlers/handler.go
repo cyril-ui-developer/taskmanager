@@ -13,6 +13,7 @@ func GetAllTasks(c *fiber.Ctx) error {
     result := database.DB.Debug().Find(&tasks)
 	fmt.Print(*result)
     if result.Error != nil {
+        // To mimic this error, you can start the server and then stop the database.
         return c.Status(500).JSON(fiber.Map{
 			"error": "Internal Server Error: Cannot fetch task",
         })
