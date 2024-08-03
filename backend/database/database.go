@@ -20,11 +20,9 @@ func Connect() error{
 	if err != nil {
 		panic("could not connect to database")
 	}
-
+	err =  DB.AutoMigrate(models.Task{})
+	if err != nil {
+		panic("could not connect to database")
+	}
 	return nil
-}
-
-func Automigrate() {
-
-	DB.AutoMigrate(models.Task{})
 }
