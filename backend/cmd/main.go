@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-    database.Connect()
+    database.Connect(); 
     database.Automigrate()
 	app := fiber.New()
 	app.Use(cors.New())
