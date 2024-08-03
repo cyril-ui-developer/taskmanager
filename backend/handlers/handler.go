@@ -1,8 +1,10 @@
 package handlers
 
 import (
+    "net/http"
+    
 	"github.com/gofiber/fiber/v2"
-"net/http"
+    "github.com/google/uuid"
 
 	"github.com/cyril-ui-developer/july7-task-manager/backend/models"
 	"github.com/cyril-ui-developer/july7-task-manager/backend/database"
@@ -33,6 +35,8 @@ func CreateTask(c *fiber.Ctx) error {
             "error": "Cannot parse JSON: " + err.Error(),
         })
     }
+// Generate a new UUID and assign it to the task's ID
+        task.ID = uuid.NewString()
 	err := database.DB.Debug().Create(&task)
     if err.Error != nil {
         return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
