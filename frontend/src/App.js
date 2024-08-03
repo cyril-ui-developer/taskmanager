@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState} from "react";
 import { Routes, Route } from "react-router-dom";
-
 import "./App.css";
 import TaskListPage from "./pages/TaskListPage";
-import { deleteTask } from "./redux/taskSlice";
 import AddTaskPage from "./pages/AddTaskPage";
 import Nav from "./components/Nav";
-import { getTasks, addTask } from "./api/tasks";
+
 import {
   useGetTasksQuery,
   useAddTaskMutation,
@@ -16,23 +13,21 @@ import {
 } from "./redux/apiTaskSlice";
 
 function App() {
-  const dispatch = useDispatch();
-  const initialTasks = useSelector((state) => state);
   const [tasks, setTasks] = useState([]);
-  //  const [isToggleTaskStatus, setIsToggleTaskStatus] = useState('incomplete')
   const {
     data: tasksData,
     // isLoading,
     // isSuccess,
-    // isError,
-    // error,
+    isError,
+    error,
   } =  useGetTasksQuery();
+
+  console.log(  "eeror", isError, error,)
 
   const [addTask] =  useAddTaskMutation();
   const [updateTask] =   useUpdateTaskCompletedMutation();
   //const [deleteTask] = useDeleteTodoMutation();
 
-  console.log("todos", tasksData);
   const onAddTaskHandler = (formValues) => {
     const newTask = {
       ...formValues,
@@ -46,11 +41,10 @@ function App() {
 
   const delTask = (taskId) => {
     setTasks((prev) => prev.filter((t) => t.id !== taskId));
-    dispatch(deleteTask(taskId));
   };
 
   const toggleTaskStatus = (taskId) => {
-    const updatedTasks = tasks.map((task) => {
+    const updatedTasks = tasksData.map((task) => {
       if (taskId === task.id) {
         updateTask({ id: taskId, completed: !task.completed });
         return { ...task, completed: !task.completed };
@@ -59,25 +53,6 @@ function App() {
     });
     setTasks(updatedTasks);
   };
-  // async function getData() {
-  //   const url = "http://localhost:4000/api/v1/tasks";
-  //   try {
-  //     const response = await fetch(url);
-  //     if (!response.ok) {
-  //       throw new Error(`Response status: ${response.status}`);
-  //     }
-
-  //     const json = await response.json();
-  //     console.log(json);
-  //   } catch (error) {
-  //     console.error(error.message);
-  //   }
-  // }
-
-  useEffect(() => {
-    //  getData().then(data => console.log(data));
-    getTasks().then((data) => setTasks(data?.data));
-  }, []);
 
   return (
     <main className="flex items-center justify-center w-screen h-screen font-medium">
