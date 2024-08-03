@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"github.com/gofiber/fiber/v2"
-"fmt"
+"net/http"
 
 	"github.com/cyril-ui-developer/july7-task-manager/backend/models"
 	"github.com/cyril-ui-developer/july7-task-manager/backend/database"
@@ -10,12 +10,12 @@ import (
 
 func GetAllTasks(c *fiber.Ctx) error {
     var tasks []models.Task
-    result := database.DB.Debug().Find(&tasks)
-	fmt.Print(*result)
-    if result.Error != nil {
+    err := database.DB.Debug().Find(&tasks)
+    if err.Error != nil {
         // To mimic this error, you can start the server and then stop the database.
-        return c.Status(500).JSON(fiber.Map{
-			"error": "Internal Server Error: Cannot fetch task",
+        return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
+            // Bad practice: Do not expose the actual error to the client in production but okay for development.
+			"error": "Cannot fetch tasks: " + err.Error.Error(),
         })
     }
     return c.JSON(tasks)
