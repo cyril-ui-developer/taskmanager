@@ -37,3 +37,40 @@ func CreateTask(c *fiber.Ctx) error {
     }
     return c.JSON(task)
 }
+
+func UpdateTaskCompleted(c *fiber.Ctx) error {
+    // Get the task ID from the URL parameters
+    id := c.Params("id")
+
+    // Find the existing task
+    existingTask := new(models.Task)
+    result := database.DB.Debug().First(existingTask, id)
+    if result.Error != nil {
+        return c.Status(http.StatusNotFound).JSON(fiber.Map{
+            "error": "Task not found",
+        })
+    }
+
+    // Parse the 'completed' field from the request body
+    completed := new(struct {
+        Completed bool `json:"completed"`
+    })
+    if err := c.BodyParser(completed); err != nil {
+        return c.Status(http.StatusBadRequest).JSON(fiber.Map{
+            "error": "Cannot parse JSON: " + err.Error(),
+        })
+    }
+
+    // Update the 'completed' field
+    existingTask.Completed = completed.Completed
+
+    // Save the changes
+    result = database.DB.Debug().Save(existingTask)
+    if result.Error != nil {
+        return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
+            "error": "Cannot update task: " + result.Error.Error(),
+        })
+    }
+
+    return c.JSON(existingTask)
+}
