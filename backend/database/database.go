@@ -13,7 +13,7 @@ import (
 
 var DB *gorm.DB
 
-// Use gorm to connect to the mysql database and migrate the schema.The connections in the pool are automatically closed. 
+// Use gorm ORM to connect to the mysql database and migrate the schema.The connections in the pool are automatically closed. 
 func Connect() error{
 	var err error
 	dns := fmt.Sprintf("%s@tcp(%s:%s)/%s", url.UserPassword(config.Config("DB_USERNAME"), config.Config("DB_PASSWORD")), config.Config("DB_HOST"), config.Config("DB_PORT"), config.Config("DB_NAME"))

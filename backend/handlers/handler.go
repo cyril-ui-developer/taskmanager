@@ -8,6 +8,7 @@ import (
 	"github.com/cyril-ui-developer/july7-task-manager/backend/database"
 )
 
+// GetAllTasks retrieves all tasks from the database and returns them as a JSON response.
 func GetAllTasks(c *fiber.Ctx) error {
     var tasks []models.Task
     err := database.DB.Debug().Find(&tasks)
@@ -21,6 +22,9 @@ func GetAllTasks(c *fiber.Ctx) error {
     return c.JSON(tasks)
 }
 
+// CreateTask creates a new task based on the JSON data provided in the request body.
+// It parses the JSON data into a models.Task object and saves it to the database.
+// If there is an error parsing the JSON or creating the task, it returns an appropriate error response.
 func CreateTask(c *fiber.Ctx) error {
     task := new(models.Task)
     if err := c.BodyParser(task); err != nil {
@@ -38,6 +42,14 @@ func CreateTask(c *fiber.Ctx) error {
     return c.JSON(task)
 }
 
+// UpdateTaskCompleted updates the completion status of a task.
+// It takes a fiber.Ctx object as a parameter and returns an error.
+// The task ID is retrieved from the URL parameters.
+// If the task is not found, it returns a JSON response with an error message.
+// The completion status is parsed from the request body and updated in the existing task.
+// The changes are saved to the database.
+// If there is an error updating the task, it returns a JSON response with an error message.
+// Finally, it returns a JSON response with the updated task.
 func UpdateTaskCompleted(c *fiber.Ctx) error {
     // Get the task ID from the URL parameters
     id := c.Params("id")
