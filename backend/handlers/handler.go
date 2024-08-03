@@ -58,9 +58,10 @@ func UpdateTaskCompleted(c *fiber.Ctx) error {
     // Get the task ID from the URL parameters
     id := c.Params("id")
 
-    // Find the existing task
+    // Find the existing task by ID
     existingTask := new(models.Task)
-    result := database.DB.Debug().First(existingTask, id)
+    // Pass in the ID as a parameter to the query
+   result := database.DB.Debug().First(existingTask, "id = ?", id)
     if result.Error != nil {
         return c.Status(http.StatusNotFound).JSON(fiber.Map{
             "error": "Task not found",
@@ -81,6 +82,7 @@ func UpdateTaskCompleted(c *fiber.Ctx) error {
     existingTask.Completed = completed.Completed
 
     // Save the changes
+
     result = database.DB.Debug().Save(existingTask)
     if result.Error != nil {
         return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
