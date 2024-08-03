@@ -8,18 +8,35 @@ import { deleteTask } from "./redux/taskSlice";
 import AddTaskPage from "./pages/AddTaskPage";
 import Nav from "./components/Nav";
 import { getTasks, addTask } from "./api/tasks";
-
+import {
+  useGetTodosQuery,
+  useAddTodoMutation,
+  useUpdateTodoMutation,
+  useDeleteTodoMutation,
+} from './redux/apiSlice';
 
 function App() {
   const dispatch = useDispatch();
   const initialTasks = useSelector((state) => state);
   const [tasks, setTasks] = useState([]);
   //  const [isToggleTaskStatus, setIsToggleTaskStatus] = useState('incomplete')
+  const {
+    data: tasksData,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetTodosQuery();
+  
+  const [addTodo] = useAddTodoMutation();
+  const [updateTodo] = useUpdateTodoMutation();
+  const [deleteTodo] = useDeleteTodoMutation();
 
+  console.log("todos", tasksData);
   const onAddTaskHandler = (formValues) => {
     const newTask = { ...formValues, id: tasks.length + 1, completed: false, active: false };
     setTasks([...tasks, newTask]);
-    addTask(formValues.title, formValues.description);
+    addTodo({title: formValues.title, description:formValues.description});
   };
 
   const delTask = (taskId) => {
@@ -30,6 +47,7 @@ function App() {
   const toggleTaskStatus = (taskId) => {
     const updatedTasks = tasks.map((task) => {
       if (taskId === task.id) {
+        updateTodo({id: taskId, completed: !task.completed});
         return { ...task, completed: !task.completed };
       }
       return task;
@@ -100,7 +118,7 @@ function App() {
                 path="/"
                 element={
                   <TaskListPage
-                    tasks={tasks}
+                    tasks={tasksData}
                     onDeleteTask={delTask}
                     onToggleTaskStatus={toggleTaskStatus}
                   />
