@@ -1,26 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Provider } from "react-redux";
+import { ApiProvider } from "@reduxjs/toolkit/query/react";
 import { BrowserRouter } from "react-router-dom";
 
-import store from "./redux/store";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { ApiProvider } from "@reduxjs/toolkit/query/react";
 import { apiTasksSlice } from "./redux/apiTaskSlice";
 
-console.log("store", store());
-const reduxStore = store();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      {/* <Provider store={reduxStore}> */}
       <ApiProvider api={apiTasksSlice}>
         <App />
       </ApiProvider>
-      {/* </Provider> */}
     </BrowserRouter>
   </React.StrictMode>
 );

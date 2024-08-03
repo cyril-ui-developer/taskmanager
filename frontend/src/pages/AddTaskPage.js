@@ -2,9 +2,6 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 
-//import { addTask } from "../redux/taskSlice";
-import { getTasks, addTask } from "../api/tasks";
-
 const AddTaskPage = ({ onAddTaskHandler }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -25,8 +22,8 @@ const AddTaskPage = ({ onAddTaskHandler }) => {
   //  const defaultDescription = formValues.description ?? { description : formValues.title}
 
     onAddTaskHandler(formValues);
-    addTask(
-      formValues.title,formValues.description);
+    // addTask(
+    //   formValues.title,formValues.description);
     setFormValues({ title: "", description: "" });
     navigate("/");
   };
