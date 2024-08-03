@@ -9,11 +9,11 @@ import AddTaskPage from "./pages/AddTaskPage";
 import Nav from "./components/Nav";
 import { getTasks, addTask } from "./api/tasks";
 import {
-  useGetTodosQuery,
-  useAddTodoMutation,
-  useUpdateTodoMutation,
-  useDeleteTodoMutation,
-} from './redux/apiSlice';
+  useGetTasksQuery,
+  useAddTaskMutation,
+  useUpdateTaskCompletedMutation,
+ // useDeleteTaskMutation,
+} from "./redux/apiTaskSlice";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,21 +22,26 @@ function App() {
   //  const [isToggleTaskStatus, setIsToggleTaskStatus] = useState('incomplete')
   const {
     data: tasksData,
-    isLoading,
-    isSuccess,
-    isError,
-    error,
-  } = useGetTodosQuery();
-  
-  const [addTodo] = useAddTodoMutation();
-  const [updateTodo] = useUpdateTodoMutation();
-  const [deleteTodo] = useDeleteTodoMutation();
+    // isLoading,
+    // isSuccess,
+    // isError,
+    // error,
+  } =  useGetTasksQuery();
+
+  const [addTask] =  useAddTaskMutation();
+  const [updateTask] =   useUpdateTaskCompletedMutation();
+  //const [deleteTask] = useDeleteTodoMutation();
 
   console.log("todos", tasksData);
   const onAddTaskHandler = (formValues) => {
-    const newTask = { ...formValues, id: tasks.length + 1, completed: false, active: false };
+    const newTask = {
+      ...formValues,
+      id: tasks.length + 1,
+      completed: false,
+      active: false,
+    };
     setTasks([...tasks, newTask]);
-    addTodo({title: formValues.title, description:formValues.description});
+    addTask({ title: formValues.title, description: formValues.description });
   };
 
   const delTask = (taskId) => {
@@ -47,7 +52,7 @@ function App() {
   const toggleTaskStatus = (taskId) => {
     const updatedTasks = tasks.map((task) => {
       if (taskId === task.id) {
-        updateTodo({id: taskId, completed: !task.completed});
+        updateTask({ id: taskId, completed: !task.completed });
         return { ...task, completed: !task.completed };
       }
       return task;
@@ -61,7 +66,7 @@ function App() {
   //     if (!response.ok) {
   //       throw new Error(`Response status: ${response.status}`);
   //     }
-  
+
   //     const json = await response.json();
   //     console.log(json);
   //   } catch (error) {
@@ -70,8 +75,8 @@ function App() {
   // }
 
   useEffect(() => {
-  //  getData().then(data => console.log(data));
-  getTasks().then((data) => setTasks(data?.data));
+    //  getData().then(data => console.log(data));
+    getTasks().then((data) => setTasks(data?.data));
   }, []);
 
   return (
