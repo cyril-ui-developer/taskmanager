@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"
@@ -47,6 +46,7 @@ func CreateTask(c *fiber.Ctx) error {
     return c.JSON(task)
 }
 
+
 // UpdateTaskCompleted updates the completion status of a task.
 // It takes a fiber.Ctx object as a parameter and returns an error.
 // The task ID is retrieved from the URL parameters.
@@ -56,19 +56,25 @@ func CreateTask(c *fiber.Ctx) error {
 // If there is an error updating the task, it returns a JSON response with an error message.
 // Finally, it returns a JSON response with the updated task.
 func UpdateTaskCompleted(c *fiber.Ctx) error {
-    // Get the task ID from the URL parameters
-    id := c.Params("id")
+//     // Get the task ID from the URL parameters
+//     id := c.Params("id")
 
-    // Find the existing task by ID
-    existingTask := new(models.Task)
-    // Pass in the ID as a parameter to the query
-   result := database.DB.Debug().First(existingTask, "id = ?", id)
-    if result.Error != nil {
-        return c.Status(http.StatusNotFound).JSON(fiber.Map{
-            "error": "Task not found",
-        })
-    }
+//     // Find the existing task by ID
+//     existingTask := new(models.Task)
+//     // Pass in the ID as a parameter to the query
+//    result := database.DB.Debug().First(existingTask, "id = ?", id)
+//     if result.Error != nil {
+//         return c.Status(http.StatusNotFound).JSON(fiber.Map{
+//             "error": "Task not found",
+//         })
+//     }
 
+existingTask, err := getTaskByID(c)
+if err != nil {
+    return c.Status(http.StatusNotFound).JSON(fiber.Map{
+        "error": "Task not found",
+    })
+}
     // Parse the 'completed' field from the request body
     completed := new(struct {
         Completed bool `json:"completed"`
@@ -84,7 +90,7 @@ func UpdateTaskCompleted(c *fiber.Ctx) error {
 
     // Save the changes
 
-    result = database.DB.Debug().Save(existingTask)
+    result := database.DB.Debug().Save(existingTask)
     if result.Error != nil {
         return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
             "error": "Cannot update task: " + result.Error.Error(),
@@ -95,20 +101,15 @@ func UpdateTaskCompleted(c *fiber.Ctx) error {
 }
 
 func DeleteTask(c *fiber.Ctx) error {
-    // Get the task ID from the URL parameters
-    id := c.Params("id")
-
-    // Find the task
-    task := new(models.Task)
-    result := database.DB.Debug().First(task, "id = ?", id)
-    if result.Error != nil {
+    // Get the task ID from the URL parameters and reurn the task
+    existingTask, err := getTaskByID(c)
+    if err != nil {
         return c.Status(http.StatusNotFound).JSON(fiber.Map{
             "error": "Task not found",
         })
     }
-fmt.Println("task", task)
     // Delete the task
-    result = database.DB.Debug().Delete(task)
+    result := database.DB.Debug().Delete(existingTask)
     if result.Error != nil {
         return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
             "error": "Cannot delete task: " + result.Error.Error(),
@@ -118,4 +119,26 @@ fmt.Println("task", task)
     return c.Status(http.StatusOK).JSON(fiber.Map{
         "success": "Task deleted successfully",
     })
+}
+
+func getTaskByID(c *fiber.Ctx) (*models.Task, error) {
+    // Get the task ID from the URL parameters
+    id := c.Params("id")
+
+    // Find the task
+    existingTask := new(models.Task)
+        // Pass in the ID as a parameter to the query
+   err := database.DB.Debug().First(existingTask, "id = ?", id)
+   if err.Error != nil {
+        c.Status(http.StatusNotFound).JSON(fiber.Map{
+           "error": "Task not found",
+       })
+   }
+
+    // result := database.DB.Debug().First(task, "id = ?", id)
+    // if result.Error != nil {
+    //     return nil, result.Error
+    // }
+
+    return existingTask, nil
 }
