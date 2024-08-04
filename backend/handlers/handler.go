@@ -1,13 +1,14 @@
 package handlers
 
 import (
-    "net/http"
-    
-	"github.com/gofiber/fiber/v2"
-    "github.com/google/uuid"
+	"fmt"
+	"net/http"
 
-	"github.com/cyril-ui-developer/july7-task-manager/backend/models"
+	"github.com/gofiber/fiber/v2"
+	"github.com/google/uuid"
+
 	"github.com/cyril-ui-developer/july7-task-manager/backend/database"
+	"github.com/cyril-ui-developer/july7-task-manager/backend/models"
 )
 
 // GetAllTasks retrieves all tasks from the database and returns them as a JSON response.
@@ -91,4 +92,30 @@ func UpdateTaskCompleted(c *fiber.Ctx) error {
     }
 
     return c.JSON(existingTask)
+}
+
+func DeleteTask(c *fiber.Ctx) error {
+    // Get the task ID from the URL parameters
+    id := c.Params("id")
+
+    // Find the task
+    task := new(models.Task)
+    result := database.DB.Debug().First(task, "id = ?", id)
+    if result.Error != nil {
+        return c.Status(http.StatusNotFound).JSON(fiber.Map{
+            "error": "Task not found",
+        })
+    }
+fmt.Println("task", task)
+    // Delete the task
+    result = database.DB.Debug().Delete(task)
+    if result.Error != nil {
+        return c.Status(http.StatusInternalServerError).JSON(fiber.Map{
+            "error": "Cannot delete task: " + result.Error.Error(),
+        })
+    }
+
+    return c.Status(http.StatusOK).JSON(fiber.Map{
+        "success": "Task deleted successfully",
+    })
 }

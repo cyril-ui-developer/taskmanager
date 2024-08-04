@@ -9,7 +9,7 @@ import {
   useGetTasksQuery,
   useAddTaskMutation,
   useUpdateTaskCompletedMutation,
- // useDeleteTaskMutation,
+  useDeleteTaskMutation,
 } from "./redux/apiTaskSlice";
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
 
   const [addTask] =  useAddTaskMutation();
   const [updateTask] =   useUpdateTaskCompletedMutation();
-  //const [deleteTask] = useDeleteTodoMutation();
+  const [deleteTask] = useDeleteTaskMutation();
 
   const onAddTaskHandler = (formValues) => {
     const newTask = {
@@ -41,6 +41,7 @@ function App() {
 
   const delTask = (taskId) => {
     setTasks((prev) => prev.filter((t) => t.id !== taskId));
+    deleteTask(taskId);
   };
 
   const toggleTaskStatus = (taskId) => {

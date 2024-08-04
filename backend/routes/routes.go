@@ -11,5 +11,6 @@ func Setup(app *fiber.App) {
 	api.Get("/tasks", handlers.GetAllTasks)
 	api.Post("/tasks", handlers.CreateTask)
 	api.Patch("/tasks/:id/completed", handlers.UpdateTaskCompleted)
+	api.Delete("/tasks/:id", handlers.DeleteTask)
 
 }
