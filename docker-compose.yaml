@@ -32,19 +32,23 @@ services:
       DBPORT: 3306
       DBNAME: ${DB_NAME}
 
+  frontend:
+    build: ./frontend
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - 3000:80
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3000:3000"
+  #   volumes:
+  #     - ./frontend:/app
+  #   environment:
+  #     - NODE_ENV=development
+
 volumes:
   dbdata:
-# version: '3.9'
-# services:
-#   db:
-#    image: mysql:5.7.22
-#    restart: always
-#    environment:
-#      MYSQL_DATABASE: ${DB_NAME}
-#      MYSQL_USER: ${DB_USERNAME}
-#      MYSQL_PASSWORD: ${DB_PASSWORD}
-#      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
-#    volumes:
-#     - .dbdata:/var/lib/mysql
-#    ports:
-#      - 3306:3306

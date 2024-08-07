@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const baseUrl=  process.env.NODE_ENV === 'development' ? 'http://localhost:4000/api/v1' : '/'
+const baseUrl=  process.env.NODE_ENV === 'development' ? 'http://localhost:4000/api/v1' : 'http://localhost:4000/api/v1'
 
 
 export const apiTasksSlice = createApi({
