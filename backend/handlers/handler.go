@@ -4,7 +4,6 @@ import (
 	"net/http"
 
 	"github.com/gofiber/fiber/v2"
-	//"github.com/google/uuid"
 
 	"github.com/cyril-ui-developer/july7-task-manager/backend/database"
 	"github.com/cyril-ui-developer/july7-task-manager/backend/models"

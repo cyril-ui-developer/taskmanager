@@ -6,15 +6,15 @@ import (
    )   
 
 type Task struct {
-	ID          uuid.UUID `json:"id" gorm:"primary_key, type:uuid;"`
+	ID           uuid.UUID `json:"id" gorm:"type:uuid;default:uuid_generate_v4()"`
 	Title       string `json:"title" gorm:"default:title not provided"`
 	Description string `json:"description" gorm:"default:description not provided"`
 	Completed   bool `json:"completed" gorm:"default:false"`
 	Active      bool `json:"active" gorm:"default:false"`
 }
 
-func (user *Task) GenerateID(tx *gorm.DB) (err error) {
-	// Generate a new UUID and assign it to the task's ID
-	user.ID = uuid.New()
-	return
-   }
+// BeforeCreate will set a UUID rather than numeric ID.
+func (task *Task) BeforeCreate(tx *gorm.DB) (err error) {
+    task.ID = uuid.New()
+    return
+}

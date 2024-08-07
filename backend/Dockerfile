@@ -39,11 +39,11 @@ RUN go mod download
 COPY . .
 
 # Set environment variables
-ENV DBHOST=db
-ENV DBUSER=root
-ENV DBPASSWORD=password
-ENV DBPORT=3306
-ENV DBNAME=july7
+# ENV DBHOST=db
+# ENV DBUSER=root
+# ENV DBPASSWORD=password
+# ENV DBPORT=3306
+# ENV DBNAME=july7
 
 RUN curl -sSfL https://raw.githubusercontent.com/cosmtrek/air/master/install.sh | sh -s -- -b $(go env GOPATH)/bin
 
