@@ -13,7 +13,7 @@ type Task struct {
 	Active      bool `json:"active" gorm:"default:false"`
 }
 
-func (user *Task) BeforeCreate(tx *gorm.DB) (err error) {
+func (user *Task) GenerateID(tx *gorm.DB) (err error) {
 	// Generate a new UUID and assign it to the task's ID
 	user.ID = uuid.New()
 	return
