@@ -19,7 +19,9 @@ services:
       retries: 3
 
   backend:
-    build: ./backend
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
     depends_on:
       db:
         condition: service_healthy
@@ -33,22 +35,15 @@ services:
       DBNAME: ${DB_NAME}
 
   frontend:
-    build: ./frontend
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
     depends_on:
-      db:
-        condition: service_healthy
+      - backend
     ports:
       - 3000:80
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "3000:3000"
-  #   volumes:
-  #     - ./frontend:/app
-  #   environment:
-  #     - NODE_ENV=development
-
+    environment:
+      NODE_ENV: development
+      BACKEND_URL: http://localhost:4000
 volumes:
   dbdata:
