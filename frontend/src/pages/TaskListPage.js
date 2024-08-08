@@ -23,6 +23,11 @@ console.log("tasks", tasks);
       <h3>Total count: {taskCount }</h3>
       <article className="flex items-start space-x-6 p-6">
       <ul>
+      <li className="heading p-4 mb-2 flex justify-between font-bold bg-gray-200">
+  <span>Title</span>
+  <span>Status</span>
+  <span>Actions</span>
+</li>
         {tasks?.map(task => (
           <li className="solid" key={task.id} data-testid="tasks" >
             <Task task={task} onDeleteTask={onDeleteTask} onToggleTaskStatus={onToggleTaskStatus}/>

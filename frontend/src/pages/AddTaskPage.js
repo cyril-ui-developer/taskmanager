@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 
 const AddTaskPage = ({ onAddTaskHandler }) => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formValues, setFormValues] = useState({ title: "", description: "" });
 
@@ -17,13 +15,7 @@ const AddTaskPage = ({ onAddTaskHandler }) => {
 
   const addTaskHandler = (event) => {
     event.preventDefault();
-
-    // Default task description since the field is optional
-  //  const defaultDescription = formValues.description ?? { description : formValues.title}
-
     onAddTaskHandler(formValues);
-    // addTask(
-    //   formValues.title,formValues.description);
     setFormValues({ title: "", description: "" });
     navigate("/");
   };

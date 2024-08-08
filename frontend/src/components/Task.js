@@ -1,5 +1,5 @@
 import Accordion from "./Accordion";
-import { toSentenceCase } from '../utils'
+import { toSentenceCase, formatToDateString } from '../utils'
 
 const Task = ({ task, onDeleteTask, onToggleTaskStatus }) => (
     <Accordion
@@ -7,6 +7,7 @@ const Task = ({ task, onDeleteTask, onToggleTaskStatus }) => (
       title={toSentenceCase(task.title)}
       id={task.id}
       active={task.active}
+      createdAt={formatToDateString(task.createdAt)}
     >
       <div className="flex mb-4">
         <div className="w-3/4">
