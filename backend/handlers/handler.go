@@ -5,8 +5,8 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 
-	"github.com/cyril-ui-developer/july7-task-manager/backend/database"
-	"github.com/cyril-ui-developer/july7-task-manager/backend/models"
+	"github.com/cyril-ui-developer/taskmanager/backend/database"
+	"github.com/cyril-ui-developer/taskmanager/backend/models"
 )
 
 // GetAllTasks retrieves all tasks from the database and returns them as a JSON response.

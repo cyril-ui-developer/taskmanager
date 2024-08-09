@@ -1,7 +1,9 @@
-# july7-task-manager
+# taskmanager
+
 July7: A simple task manager
 
 ### Setup the project
+
 - Clone the repository
 - Run `docker compose up` to start the MySQL database server. The docker-compose.yml file to orchestrate the Frontend, Go API and MySQL services:
 - Change to the project directory "/july-task-manager

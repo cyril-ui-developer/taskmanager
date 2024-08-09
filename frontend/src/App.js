@@ -89,7 +89,7 @@ function App() {
                     </g>
                   </svg>
                 </div>
-                <h4 className="font-semibold ml-1 text-lg">Taskie</h4>
+                <h4 className="font-semibold ml-1 text-lg">TaskManager</h4>
               </div>
               <Nav />
             </header>

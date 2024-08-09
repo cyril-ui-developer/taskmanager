@@ -1,8 +1,8 @@
 package routes
 
 import (
+	"github.com/cyril-ui-developer/taskmanager/backend/handlers"
 	"github.com/gofiber/fiber/v2"
-	"github.com/cyril-ui-developer/july7-task-manager/backend/handlers"
 )
 
 func Setup(app *fiber.App) {
