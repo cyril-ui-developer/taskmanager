@@ -1,6 +1,5 @@
-# taskmanager
-
-July7: A simple task manager
+# Taskmanager
+A simple task manager
 
 ### Setup the project
 
