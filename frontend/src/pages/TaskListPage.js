@@ -1,31 +1,22 @@
-import { useEffect, useState } from 'react';
-
-// import { useDispatch, useSelector } from 'react-redux';
-// import { fetchAllTasks } from '../redux/taskSlice';
-
 import Task from '../components/Task'
 
 const TaskListPage = ({ tasks, onDeleteTask, onToggleTaskStatus}) => {
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchAllTasks());
-  // }, []);
-
-  // const tasksData = useSelector((state) => state);
-  // console.log("tasks", tasksData);
-  const tasksNoun = tasks?.length !== 1 ? "tasks" : "task";
-const taskCount = `${tasks?.length} ${tasksNoun} remaining`;
+const tasksNoun = tasks?.length !== 1 ? "tasks" : "task";
+const taskCount = `${tasks?.length} ${tasksNoun}`;
 console.log("tasks", tasks);
 
   return(
   <>
-      <h3>Total count: {taskCount }</h3>
-      <article className="flex items-start space-x-6 p-6">
+<div className='flex justify-between items-center'>
+  <h2 className="text-l font-bold">List Tasks</h2>
+  <h3>Count: {taskCount}</h3>
+</div>
+ <article className="flex items-start space-x-3 p-3">
       <ul>
       <li className="heading p-4 mb-2 flex justify-between font-bold bg-gray-200">
+
+  <span>Date</span>
   <span>Title</span>
-  <span>Status</span>
   <span>Actions</span>
 </li>
         {tasks?.map(task => (

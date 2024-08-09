@@ -22,8 +22,9 @@ export default function Accordion({
           onClick={(e) => { e.preventDefault(); setAccordionOpen(!accordionOpen); }}
           aria-expanded={accordionOpen}
           aria-controls={`accordion-text-${id}`}
-        >
-          <span className='flex justify-between'><span data-testid="title">{title}</span>    <span data-testid="title">{createdAt}</span></span>
+        > 
+          <span className='pr-7'>{createdAt}</span>
+          <span data-testid="title" className='flex-1 text-left'>{title}</span>
           <svg className="fill-indigo-500 shrink-0 ml-8" width="16" height="16" xmlns="http://www.w3.org/2000/svg">
             <rect y="7" width="16" height="2" rx="1" className={`ttransform origin-center transition duration-200 ease-out ${accordionOpen && '!rotate-180'}`} />
             <rect y="7" width="16" height="2" rx="1" className={`transform origin-center rotate-90 transition duration-200 ease-out ${accordionOpen && '!rotate-180'}`} />
