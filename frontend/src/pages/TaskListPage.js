@@ -7,11 +7,12 @@ console.log("tasks", tasks);
 
   return(
   <>
-<div className='flex justify-between items-center'>
+<div className='flex justify-between items-center '>
   <h2 className="text-l font-bold">List Tasks</h2>
   <h3>Count: {taskCount}</h3>
 </div>
- <article className="flex items-start space-x-3 p-3">
+
+ <article className="space-x-3 p-3 max-w-full">
       <ul>
       <li className="heading p-4 mb-2 flex justify-between font-bold bg-gray-200">
 

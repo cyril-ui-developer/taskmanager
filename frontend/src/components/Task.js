@@ -39,7 +39,7 @@ const Task = ({ task, onDeleteTask, onToggleTaskStatus }) => (
           <span
             data-testid="description"
             className={`${
-              task.completed ? "ml-4 text-sm  line-through" : "ml-4 text-sm "
+              task.completed ? "ml-4 text-sm text-justify line-through" : "ml-4 text-sm text-justify"
             }`}
           >
             {toSentenceCase(task.description) || toSentenceCase(task.title)}

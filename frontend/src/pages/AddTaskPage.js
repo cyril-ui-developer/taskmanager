@@ -22,7 +22,7 @@ const AddTaskPage = ({ onAddTaskHandler }) => {
 
   return (
     <>
-  <h2 className="text-l font-bold pb-5">List Tasks</h2>
+  <h2 className="text-l font-bold pb-5">Add Task</h2>
     <form className="form" onSubmit={addTaskHandler}>
        <div className="mb-4">
       <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="username">
