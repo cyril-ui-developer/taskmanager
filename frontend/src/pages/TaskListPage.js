@@ -3,7 +3,6 @@ import Task from '../components/Task'
 const TaskListPage = ({ tasks, onDeleteTask, onToggleTaskStatus}) => {
 const tasksNoun = tasks?.length !== 1 ? "tasks" : "task";
 const taskCount = `${tasks?.length} ${tasksNoun}`;
-console.log("tasks", tasks);
 
   return(
   <>

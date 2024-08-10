@@ -19,12 +19,13 @@ const Task = ({ task, onDeleteTask, onToggleTaskStatus }) => (
     active={task.active}
     createdAt={formatToDateString(task.createdAt)}
   >
-    <div className="flex mb-4">
-      <div className="w-3/4">
+    <div className="flex">
+      <div className="w-10/12">
         <label
-          className="inline-flex items-center h-10 px-2 rounded cursor-pointer hover:bg-gray-100"
-          for={task.id}
+          className="inline-flex items-between text-justify h-10 px-2 rounded cursor-pointer hover:bg-gray-100"
+          htmlFor={task.id}
         >
+          <span className="flex items-center space-x-3">
           <input
             data-testid="completed"
             type="checkbox"
@@ -33,9 +34,9 @@ const Task = ({ task, onDeleteTask, onToggleTaskStatus }) => (
             name="completed"
             checked={task.completed}
             onChange={() => onToggleTaskStatus(task.id)}
-            className="w-4 h-4 accent-blue-600"
+            className="w-4 h-4 text-center align-middle accent-blue-600"
           />
-
+</span>
           <span
             data-testid="description"
             className={`${
@@ -45,13 +46,12 @@ const Task = ({ task, onDeleteTask, onToggleTaskStatus }) => (
             {toSentenceCase(task.description) || toSentenceCase(task.title)}
           </span>
         </label>
-        <div></div>
       </div>
-      <div className="w-1/4">
+      <div className="w-2/12">
         <span className="my-2 grid justify-items-end">
           <button
             data-testid="delete-button"
-            className="hover:bg-red-400 group  rounded-md bg-red-500 text-white text-sm font-medium pl-2 pr-3 py-2 shadow-sm"
+            className="hover:bg-red-400 group  rounded-md bg-red-500 text-white text-sm font-medium p-1 shadow-sm"
             type="button"
             onClick={() => onDeleteTask(task.id)}
           >
@@ -59,8 +59,8 @@ const Task = ({ task, onDeleteTask, onToggleTaskStatus }) => (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
-                width="10"
-                height="10"
+                width="6"
+                height="6"
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"

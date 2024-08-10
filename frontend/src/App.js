@@ -18,11 +18,9 @@ function App() {
     data: tasksData,
     // isLoading,
     // isSuccess,
-    isError,
-    error,
+    //isError,
+    // error,
   } =  useGetTasksQuery();
-
-  console.log(  "eeror", isError, error,)
 
   const [addTask] =  useAddTaskMutation();
   const [updateTask] =   useUpdateTaskCompletedMutation();
