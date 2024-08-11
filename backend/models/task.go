@@ -5,11 +5,12 @@ import (
 )
 
 type Task struct {
-	ID          uint      `json:"id"`
-	CreatedAt   time.Time `json:"createdAt"`
-	UpdatedAt   time.Time `json:"updatedAt"`
-	Title       string    `json:"title" gorm:"default:title not provided"`
-	Description string    `json:"description" gorm:"default:description not provided"`
-	Completed   bool      `json:"completed" gorm:"default:false"`
-	Active      bool      `json:"active" gorm:"default:false"`
+	ID            uint      `json:"id"`
+	CreatedAt     time.Time `json:"createdAt"`
+	UpdatedAt     time.Time `json:"updatedAt"`
+	DueDateTime time.Time   `json:"dueDateTime"`
+	Title         string    `json:"title" gorm:"default:title not provided"`
+	Description   string    `json:"description" gorm:"default:description not provided"`
+	Completed     bool      `json:"completed" gorm:"default:false"`
+	Active        bool      `json:"active" gorm:"default:false"`
 }

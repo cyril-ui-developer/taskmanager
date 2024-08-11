@@ -1,33 +1,53 @@
-import Task from '../components/Task'
+import React, { useState } from "react";
+import Task from "../components/Task";
+import { sortTasksByDueDateTime } from "../utils";
 
-const TaskListPage = ({ tasks, onDeleteTask, onToggleTaskStatus}) => {
-const tasksNoun = tasks?.length !== 1 ? "tasks" : "task";
-const taskCount = `${tasks?.length} ${tasksNoun}`;
+const countCompletedTasks = (tasks) => {
+  return tasks?.filter((task) => task.completed).length;
+};
+const TaskListPage = ({ tasks, onDeleteTask, onToggleTaskStatus }) => {
+  const [sortOrder, setSortOrder] = useState("asc"); // 'asc' for ascending, 'desc' for descending
+  const sortedTasks = sortTasksByDueDateTime(tasks, sortOrder);
+  const tasksLen = sortedTasks.length;
+  const toggleSortOrder = () => {
+    setSortOrder((prevOrder) => (prevOrder === "asc" ? "desc" : "asc"));
+  };
+  const tasksNoun = tasksLen !== 1 ? "tasks" : "task";  const completedTasks = countCompletedTasks(sortedTasks);
+  const taskCount = `${completedTasks}/${tasksLen} ${tasksNoun}`;
 
-  return(
-  <>
-<div className='flex justify-between items-center '>
-  <h2 className="text-l font-bold">List Tasks</h2>
-  <h3>Count: {taskCount}</h3>
-</div>
 
- <article className="space-x-3 p-3 max-w-full">
-      <ul>
-      <li className="heading p-4 mb-2 flex justify-between font-bold bg-gray-200">
+  return (
+    <>
+      <div className="flex justify-between items-center ">
+        <h2 className="text-l font-bold">List Tasks</h2>
+        {tasksLen > 0 && <h3>Ratio: {taskCount}</h3>}
+      </div>
 
-  <span>Date</span>
-  <span>Title</span>
-  <span>Actions</span>
-</li>
-        {tasks?.map(task => (
-          <li className="solid" key={task.id} data-testid="tasks" >
-            <Task task={task} onDeleteTask={onDeleteTask} onToggleTaskStatus={onToggleTaskStatus}/>
+      <article className="space-x-3 p-3 max-w-full">
+        {tasksLen > 0 ? <ul>
+          <li className="heading p-4 mb-2 flex justify-between font-bold bg-gray-200">
+            <span>
+              Time{" "}
+              <button onClick={toggleSortOrder}>
+                {sortOrder === "asc" ? <>▲</> : <>▼</>}
+              </button>
+            </span>
+            <span>Title</span>
+            <span>Actions</span>
           </li>
-        ))}
-    </ul>
-    </article>
-  </>
+          {sortedTasks?.map((task) => (
+            <li className="solid" key={task.id} data-testid="tasks">
+              <Task
+                task={task}
+                onDeleteTask={onDeleteTask}
+                onToggleTaskStatus={onToggleTaskStatus}
+              />
+            </li>
+          ))}
+        </ul> : <div className="solid text-center">No tasks found</div>}
+      </article>
+    </>
+  );
+};
 
-  )}
-
-  export default TaskListPage
+export default TaskListPage;

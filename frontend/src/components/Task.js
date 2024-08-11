@@ -8,7 +8,7 @@ const title = ({ task }) => (
       task.completed ? "ml-4 text-sm  line-through" : "ml-4 text-sm "
     }`}
   >
-    {toSentenceCase(task.title)}
+    {toSentenceCase(task.title)} jk
   </span>
 );
 const Task = ({ task, onDeleteTask, onToggleTaskStatus }) => (
@@ -17,7 +17,8 @@ const Task = ({ task, onDeleteTask, onToggleTaskStatus }) => (
     title={title({ task })}
     id={task.id}
     active={task.active}
-    createdAt={formatToDateString(task.createdAt)}
+    dueDateTime={formatToDateString(task.dueDateTime
+      )}
   >
     <div className="flex">
       <div className="w-10/12">

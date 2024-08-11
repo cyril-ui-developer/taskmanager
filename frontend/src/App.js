@@ -4,6 +4,7 @@ import "./App.css";
 import TaskListPage from "./pages/TaskListPage";
 import AddTaskPage from "./pages/AddTaskPage";
 import Nav from "./components/Nav";
+import { convertToISOFormat } from "./utils";
 
 import {
   useGetTasksQuery,
@@ -29,13 +30,11 @@ function App() {
   const onAddTaskHandler = (formValues) => {
     const newTask = {
       ...formValues,
-      id: tasks.length + 1,
-      completed: false,
-      active: false,
+      dueDateTime: convertToISOFormat(formValues.dueDateTime)
     };
     setTasks([...tasks, newTask]);
-    addTask({ title: formValues.title, description: formValues.description });
-  };
+    addTask(newTask)
+   };
 
   const delTask = (taskId) => {
     setTasks((prev) => prev.filter((t) => t.id !== taskId));
@@ -87,7 +86,7 @@ function App() {
                     </g>
                   </svg>
                 </div>
-                <h4 className="font-semibold ml-1 text-lg">TaskManager</h4>
+                <h4 className="font-semibold ml-1 text-lg">TodayTM</h4>
               </div>
               <Nav />
             </header>
