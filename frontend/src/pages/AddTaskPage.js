@@ -9,6 +9,7 @@ const AddTaskPage = ({ onAddTaskHandler }) => {
     title: "",
     description: "",
     dueDateTime: getCurrentDateTime(),
+    priority: "low",
   });
 
   const handleOnInputChange = (event) => {
@@ -67,7 +68,7 @@ const AddTaskPage = ({ onAddTaskHandler }) => {
           onChange={handleOnInputChange}
           maxLength="100"
         ></textarea>
-        <div className="mb-4">
+        <div className="mt-2 mb-2">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="dueDate"
@@ -83,6 +84,41 @@ const AddTaskPage = ({ onAddTaskHandler }) => {
             id="dueDateTime"
             onChange={handleOnInputChange}
           />
+        </div>
+        <div className="mt-2 mb-2">
+          <label>Priority</label>
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="priority"
+                value="low"
+                checked={formValues.priority === "low"}
+                onChange={handleOnInputChange}
+              />
+              Low
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="priority"
+                value="medium"
+                checked={formValues.priority === "medium"}
+                onChange={handleOnInputChange}
+              />
+              Medium
+              </label>
+            <label>
+              <input
+                type="radio"
+                name="priority"
+                value="high"
+                checked={formValues.priority === "high"}
+                onChange={handleOnInputChange}
+              />
+              High
+            </label>
+          </div>
         </div>
         <button
           data-testid="add-button"

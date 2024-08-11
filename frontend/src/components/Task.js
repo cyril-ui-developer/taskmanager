@@ -11,7 +11,7 @@ const title = ({ task }) => (
     {toSentenceCase(task.title)}
   </span>
 );
-const Task = ({ task, onDeleteTask, onToggleTaskStatus }) => (
+const Task = ({ task, onDeleteTask, onToggleTaskStatus, priority }) => (
   <Accordion
     key={task.id}
     title={title({ task })}
@@ -19,6 +19,7 @@ const Task = ({ task, onDeleteTask, onToggleTaskStatus }) => (
     active={task.active}
     dueDateTime={formatToDateString(task.dueDateTime
       )}
+      priority={task.priority}
   >
     <div className="flex">
       <div className="w-10/12">
@@ -26,7 +27,7 @@ const Task = ({ task, onDeleteTask, onToggleTaskStatus }) => (
           className="inline-flex items-between text-justify h-10 px-2 rounded cursor-pointer hover:bg-gray-100"
           htmlFor={task.id}
         >
-          <span className="flex items-center space-x-3">
+          <span className="flex items-center">
           <input
             data-testid="completed"
             type="checkbox"

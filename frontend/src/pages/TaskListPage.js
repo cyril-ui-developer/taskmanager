@@ -23,9 +23,9 @@ const TaskListPage = ({ tasks, onDeleteTask, onToggleTaskStatus }) => {
         {tasksLen > 0 && <h3>Ratio: {taskCount}</h3>}
       </div>
 
-      <article className="space-x-3 p-3 max-w-full">
+      <article className="space-x-2 p-2 max-w-full">
         {tasksLen > 0 ? <ul>
-          <li className="heading p-4 mb-2 flex justify-between font-bold bg-gray-200">
+          <li className="heading p-3 mb-2 flex justify-between font-bold bg-gray-200">
             <span>
               Time{" "}
               <button onClick={toggleSortOrder}>
@@ -33,7 +33,8 @@ const TaskListPage = ({ tasks, onDeleteTask, onToggleTaskStatus }) => {
               </button>
             </span>
             <span>Title</span>
-            <span>Actions</span>
+            <span>Priority</span>
+            <span>Action</span>
           </li>
           {sortedTasks?.map((task) => (
             <li className="solid" key={task.id} data-testid="tasks">
