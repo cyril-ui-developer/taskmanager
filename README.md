@@ -20,3 +20,19 @@ docker compose up
 - Run `go run .` to start the Go backend API server on locahost port 4000
 - Open another terminal, and change to "/taskmanager/frontend"
 - Run `yarn && yarn start` to launch the React frontend application on locahost port 3000.
+
+### Some screenshots of the TodayTM application
+#### List Tasks screens
+![Screenshot](screenshots/screenshot_1.png)
+
+![Screenshot](screenshots/screenshot_2.png)
+
+![Screenshot](screenshots/screenshot_3.png)
+
+![Screenshot](screenshots/screenshot_4.png)
+
+#### Add Task screens
+![Screenshot](screenshots/screenshot_5.png)
+
+![Screenshot](screenshots/screenshot_6.png)
+

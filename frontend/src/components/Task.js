@@ -8,7 +8,7 @@ const title = ({ task }) => (
       task.completed ? "ml-4 text-sm  line-through" : "ml-4 text-sm "
     }`}
   >
-    {toSentenceCase(task.title)} jk
+    {toSentenceCase(task.title)}
   </span>
 );
 const Task = ({ task, onDeleteTask, onToggleTaskStatus }) => (
