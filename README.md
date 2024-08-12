@@ -1,6 +1,6 @@
 # TodayTM
 ## About the project
-TodayTM is a minimal and simple task management application designed to help you efficiently manage all your daily tasks. The motivation behind this project is to demonstrate how to build and deploy a minimal and simple full-stack cloud-native application using a modern and trending technology stack such as React, Golang, and Kubernetes. 
+TodayTM is a minimal and simple task management application designed to help you efficiently manage all your daily tasks. The motivation behind this project is to demonstrate how to build and deploy a minimal and simple full-stack cloud-native application using modern and trending technologies such as React, Golang, and Kubernetes. 
 
 ## Setup the project
 #### Running the application using `docker compose up`
