@@ -27,7 +27,8 @@ const Task = ({ task, onDeleteTask, onToggleTaskStatus, priority }) => (
           className="inline-flex items-between text-justify h-10 px-2 rounded cursor-pointer hover:bg-gray-100"
           htmlFor={task.id}
         >
-          <span className="flex items-center">
+   <div className="flex items-center">
+   <span className="text-gray-500 text-sm">
           <input
             data-testid="completed"
             type="checkbox"
@@ -36,9 +37,9 @@ const Task = ({ task, onDeleteTask, onToggleTaskStatus, priority }) => (
             name="completed"
             checked={task.completed}
             onChange={() => onToggleTaskStatus(task.id)}
-            className="w-4 h-4  accent-blue-600"
+            className="w-4 h-4   accent-blue-600"
           />
-</span>
+ </span>
           <span
             data-testid="description"
             className={`${
@@ -47,6 +48,7 @@ const Task = ({ task, onDeleteTask, onToggleTaskStatus, priority }) => (
           >
             {toSentenceCase(task.description) || toSentenceCase(task.title)}
           </span>
+         </div>
         </label>
       </div>
       <div className="w-2/12">

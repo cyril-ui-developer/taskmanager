@@ -48,10 +48,10 @@ export default function Accordion({
   }, [active, setAccordionOpen]);
   const priorityAttributes = getPriorityAttributes(priority);
   return (
-    <div className="py-2">
+<div className="py-2 bottom-2 bottom-col border-b border-gray-300">
       <h2>
         <button
-          className="flex items-center justify-between w-full text-left font-semibold"
+          className="flex items-center justify-between w-full text-left"
           onClick={(e) => {
             e.preventDefault();
             setAccordionOpen(!accordionOpen);

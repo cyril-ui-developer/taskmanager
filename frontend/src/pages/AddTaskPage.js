@@ -48,7 +48,7 @@ const AddTaskPage = ({ onAddTaskHandler }) => {
             id="title"
             placeholder="Enter title"
             onChange={handleOnInputChange}
-            maxLength="18"
+            maxLength="16"
           />
         </div>
         <label
