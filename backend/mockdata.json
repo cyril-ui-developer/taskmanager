@@ -1,31 +1,67 @@
 [
     {
-        "id": 1,
-        "createdAt": "2024-08-11T11:05:24.172Z",
-        "updatedAt": "2024-08-11T11:32:40.85Z",
-        "dueDateTime": "2024-08-11T10:00:00Z",
-        "title": "Fellowship ith God",
-        "description": "Worship the Lord in songs and praises. Adore and give God thanks. Pray and mediate on the Word. ",
-        "completed": true,
-        "active": false
-    },
-    {
-        "id": 2,
-        "createdAt": "2024-08-11T11:08:55.28Z",
-        "updatedAt": "2024-08-11T11:32:59.759Z",
-        "dueDateTime": "2024-08-11T11:00:00Z",
-        "title": "Prapare my kids",
-        "description": "Wake the kids up and pray with them. Prepare them for school. Drop them off at school. ",
-        "completed": true,
-        "active": false
-    },
-    {
-        "id": 3,
-        "createdAt": "2024-08-11T11:12:44.918Z",
-        "updatedAt": "2024-08-11T11:12:44.918Z",
+        "id": 24,
+        "createdAt": "2024-08-12T03:31:49.521Z",
+        "updatedAt": "2024-08-12T03:31:49.521Z",
         "dueDateTime": "2024-08-11T13:00:00Z",
         "title": "Resume work",
-        "description": "Log in, check emails, slack and Jira queue. Join meetings and discussions. Work on features and bugs",
+        "description": "Log in, check emails, slack, and Jira queue.",
+        "priority": "high",
+        "completed": false,
+        "active": false
+    },
+    {
+        "id": 25,
+        "createdAt": "2024-08-12T03:36:08.867Z",
+        "updatedAt": "2024-08-12T03:36:19.398Z",
+        "dueDateTime": "2024-08-11T14:00:00Z",
+        "title": "Join meetings",
+        "description": "Join meetings and discussions. Work on features and bugs",
+        "priority": "high",
+        "completed": false,
+        "active": false
+    },
+    {
+        "id": 26,
+        "createdAt": "2024-08-12T03:39:08.554Z",
+        "updatedAt": "2024-08-12T03:39:08.554Z",
+        "dueDateTime": "2024-08-11T11:00:00Z",
+        "title": "Get kids ready",
+        "description": "Wake the kids up, pray with them, and get them ready for school",
+        "priority": "medium",
+        "completed": false,
+        "active": false
+    },
+    {
+        "id": 28,
+        "createdAt": "2024-08-12T03:42:53.511Z",
+        "updatedAt": "2024-08-12T03:42:53.511Z",
+        "dueDateTime": "2024-08-11T10:00:00Z",
+        "title": "Fellowship",
+        "description": "Worship and give thanks to God. Pray and meditate on the Word.",
+        "priority": "high",
+        "completed": false,
+        "active": false
+    },
+    {
+        "id": 29,
+        "createdAt": "2024-08-12T03:46:07.315Z",
+        "updatedAt": "2024-08-12T03:46:07.315Z",
+        "dueDateTime": "2024-08-11T16:00:00Z",
+        "title": "Lunch time",
+        "description": "Go for a launch and relax briefly before continuing with work.",
+        "priority": "medium",
+        "completed": false,
+        "active": false
+    },
+    {
+        "id": 30,
+        "createdAt": "2024-08-12T03:54:29.553Z",
+        "updatedAt": "2024-08-12T03:54:29.553Z",
+        "dueDateTime": "2024-08-11T16:40:00Z",
+        "title": "Exercise",
+        "description": "Go for a short 20-minute walk or do some other exercise.",
+        "priority": "low",
         "completed": false,
         "active": false
     }
