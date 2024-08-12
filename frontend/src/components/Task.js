@@ -24,7 +24,7 @@ const Task = ({ task, onDeleteTask, onToggleTaskStatus, priority }) => (
     <div className="flex">
       <div className="w-10/12">
         <label
-          className="inline-flex items-between text-justify h-10 px-2 rounded cursor-pointer hover:bg-gray-100"
+          className="inline-flex items-between text-justify h-10 mt-1 px-1 rounded cursor-pointer"
           htmlFor={task.id}
         >
    <div className="flex items-center">
@@ -43,7 +43,7 @@ const Task = ({ task, onDeleteTask, onToggleTaskStatus, priority }) => (
           <span
             data-testid="description"
             className={`${
-              task.completed ? "ml-4 text-sm text-justify line-through" : "ml-4 text-sm text-justify"
+              task.completed ? "ml-4 text-sm text-justify line-through  hover:bg-gray-100" : "ml-4 text-sm text-justify  hover:bg-gray-100"
             }`}
           >
             {toSentenceCase(task.description) || toSentenceCase(task.title)}
@@ -52,7 +52,7 @@ const Task = ({ task, onDeleteTask, onToggleTaskStatus, priority }) => (
         </label>
       </div>
       <div className="w-2/12">
-        <span className="my-2 grid justify-items-end">
+        <span className="grid justify-items-end">
           <button
             data-testid="delete-button"
             className="hover:bg-red-400 group  rounded-md bg-red-500 text-white text-sm font-medium p-1 shadow-sm"

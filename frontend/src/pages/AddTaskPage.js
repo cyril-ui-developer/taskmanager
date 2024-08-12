@@ -66,7 +66,7 @@ const AddTaskPage = ({ onAddTaskHandler }) => {
           rows="3"
           placeholder="Enter description (Optional)"
           onChange={handleOnInputChange}
-          maxLength="100"
+          maxLength="70"
         ></textarea>
         <div className="mt-2 mb-2">
           <label

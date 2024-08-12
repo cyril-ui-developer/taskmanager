@@ -31,8 +31,6 @@ The list tasks page is the main dashboard of the TodayTM application, where user
 
 ![Screenshot](screenshots/screenshot_3.png)
 
-![Screenshot](screenshots/screenshot_4.png)
-
 #### Add Task 
 The add task page contains a form where users can input details for a new task, including the title, description, due date, and priority. The add form is disabled until the user enters at least a task title, and the default time is used if the time is not selected.
 
