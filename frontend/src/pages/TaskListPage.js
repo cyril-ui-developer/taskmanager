@@ -33,9 +33,20 @@ const TaskListPage = ({ tasks, onDeleteTask, onToggleTaskStatus }) => {
               </button>
             </span>
             <span>Title</span>
-            <span>Priority</span>
-            <span>Action</span>
+            <span className="mr-6">Priority</span>
+            {/* <span>Action</span> */}
           </li>
+          {/* <li className="heading p-3 mb-2 flex justify-between font-bold bg-gray-200">
+  <span className="flex-1 basis-3/10">
+    Time{" "}
+    <button onClick={toggleSortOrder}>
+      {sortOrder === "asc" ? <>▲</> : <>▼</>}
+    </button>
+  </span>
+  <span className="flex-1 basis-4/10">Title</span>
+  <span className="flex-1 basis-1/10">Priority</span>
+  <span className="flex-1 basis-1/10">Action</span>
+</li> */}
           {sortedTasks?.map((task) => (
             <li className="solid" key={task.id} data-testid="tasks">
               <Task

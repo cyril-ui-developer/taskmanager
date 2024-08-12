@@ -34,7 +34,7 @@ const AddTaskPage = ({ onAddTaskHandler }) => {
       <form className="form" onSubmit={addTaskHandler}>
         <div className="mb-4">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-700 text-md  mb-2"
             htmlFor="username"
           >
             Title
@@ -52,8 +52,8 @@ const AddTaskPage = ({ onAddTaskHandler }) => {
           />
         </div>
         <label
-          className="block text-gray-700 text-sm font-bold mb-2"
-          htmlFor="username"
+          className="block text-gray-700 text-md mb-2"
+          htmlFor="description"
         >
           Description
         </label>
@@ -70,7 +70,7 @@ const AddTaskPage = ({ onAddTaskHandler }) => {
         ></textarea>
         <div className="mt-2 mb-2">
           <label
-            className="block text-gray-700 text-sm font-bold mb-2"
+            className="block text-gray-700 text-md mb-2"
             htmlFor="dueDate"
           >
             Due Time
@@ -86,44 +86,48 @@ const AddTaskPage = ({ onAddTaskHandler }) => {
           />
         </div>
         <div className="mt-2 mb-2">
-          <label>Priority</label>
-          <div>
-            <label>
-              <input
-                type="radio"
-                name="priority"
-                value="low"
-                checked={formValues.priority === "low"}
-                onChange={handleOnInputChange}
-              />
-              Low
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="priority"
-                value="medium"
-                checked={formValues.priority === "medium"}
-                onChange={handleOnInputChange}
-              />
-              Medium
-              </label>
-            <label>
-              <input
-                type="radio"
-                name="priority"
-                value="high"
-                checked={formValues.priority === "high"}
-                onChange={handleOnInputChange}
-              />
-              High
-            </label>
-          </div>
+          <label   className="block text-gray-700 text-md"
+            htmlFor="priority">Priority</label>
+          <div className="flex flex-row space-x-2">
+  <label className="flex items-center space-x-2">
+    <input
+      type="radio"
+      name="priority"
+      value="low"
+      checked={formValues.priority === "low"}
+      onChange={handleOnInputChange}
+      className="form-radio text-blue-600"
+    />
+    <span className="text-gray-700">Low</span>
+  </label>
+  <label className="flex items-center space-x-2">
+    <input
+      type="radio"
+      name="priority"
+      value="medium"
+      checked={formValues.priority === "medium"}
+      onChange={handleOnInputChange}
+      className="form-radio text-green-600"
+    />
+    <span className="text-gray-700">Medium</span>
+  </label>
+  <label className="flex items-center space-x-2">
+    <input
+      type="radio"
+      name="priority"
+      value="high"
+      checked={formValues.priority === "high"}
+      onChange={handleOnInputChange}
+      className="form-radio text-red-600"
+    />
+    <span className="text-gray-700">High</span>
+  </label>
+</div>
         </div>
         <button
           data-testid="add-button"
           disabled={formValues.title === ""}
-          className="hover:bg-blue-400 group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 my-2 pr-3 py-2 shadow-sm"
+          className="hover:bg-blue-400 group flex items-center rounded-md bg-blue-500 text-white text-sm font-medium pl-2 my-4 pr-3 py-2 shadow-sm"
           type="submit"
         >
           Submit

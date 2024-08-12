@@ -36,7 +36,7 @@ const Task = ({ task, onDeleteTask, onToggleTaskStatus, priority }) => (
             name="completed"
             checked={task.completed}
             onChange={() => onToggleTaskStatus(task.id)}
-            className="w-4 h-4 text-center align-middle accent-blue-600"
+            className="w-4 h-4  accent-blue-600"
           />
 </span>
           <span
