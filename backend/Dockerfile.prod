@@ -1,0 +1,9 @@
+FROM golang:1.22.3 
+
+WORKDIR /home
+
+COPY . /home
+
+RUN cd /home && go build -o backend
+
+CMD ["/home/backend"]

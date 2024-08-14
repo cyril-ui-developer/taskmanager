@@ -1,0 +1,29 @@
+# Use the official Node.js image as the base image
+FROM node:18-alpine as build-stage
+
+# Set the working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the application code
+COPY . .
+
+# Set the environment variable REACT_APP_BACKEND_URL to the value passed in the build command
+ARG REACT_APP_BACKEND_URL
+ARG REACT_APP_NODE_ENV
+
+# Build the React application
+RUN npm run build
+
+# The build output will be in the /app/build directory
+
+# Expose port 80 (optional, if you plan to serve the app later)
+EXPOSE 80
+
+# Default command to keep the container running
+CMD ["npm", "start"]

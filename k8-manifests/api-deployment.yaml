@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: backend
+  name: backend
+  namespace: <namespace>
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: backend
+    spec:
+      containers:
+      - image: quay.io/<username>/taskmanager-backend:latest
+        name: backend
+        resources: {}
+        env:
+        - name: DB_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: backend-cm
+              key: host
+        - name: DB_NAME
+          valueFrom:
+            configMapKeyRef:
+              name: backend-cm
+              key: dbname
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-password
+              key: rootpassword
+status: {}

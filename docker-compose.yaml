@@ -21,7 +21,7 @@ services:
   backend:
     build: 
       context: ./backend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     depends_on:
       db:
         condition: service_healthy
@@ -37,7 +37,7 @@ services:
   frontend:
     build: 
       context: ./frontend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
       args:
         REACT_APP_BACKEND_URL: ${BACKEND_URL}
     depends_on:

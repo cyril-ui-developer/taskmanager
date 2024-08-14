@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
-const baseUrl=  process.env.NODE_ENV === 'development' ? 'http://localhost:4000/api/v1' : `${backendUrl}/api/v1`;
+const baseUrl=  process.env.REACT_APP_NODE_ENV === 'development' ? 'http://localhost:4000/api/v1' : `${backendUrl}/api/v1`;
 
 export const apiTasksSlice = createApi({
   reducerPath: "api",

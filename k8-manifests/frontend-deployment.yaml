@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: frontend
+  name: frontend
+  namespace: <namespace>
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - image: quay.io/<username>/taskmanager-frontend:latest
+          name: frontend
+          resources: {}
+          env:
+            - name: REACT_APP_BACKEND_URL
+              value: "<BACKEND_API_URL>"
+            - name: REACT_APP_NODE_ENV
+              value: "production"
+
+status: {}
