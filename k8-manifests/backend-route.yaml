@@ -1,0 +1,19 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: <namespace>
+  namespace: cajieh-dev
+  labels:
+    app: backend
+spec:
+  to:
+    kind: Service
+    name: backend
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: None
+    destinationCACertificate: ''
+  port:
+    targetPort: 4000
+  alternateBackends: []
+

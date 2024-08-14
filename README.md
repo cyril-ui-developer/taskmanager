@@ -1,6 +1,6 @@
 # TodayTM
 ## About the project
-TodayTM is a minimal and simple task management application designed to help you efficiently manage all your daily tasks. The motivation behind this project is to demonstrate how to build and deploy a minimal and simple full-stack cloud-native application using modern and trending technologies such as React, Golang, and Kubernetes. 
+TodayTM is a minimal and simple task management application designed to help you efficiently manage all your daily tasks. The motivation behind this project is to demonstrate how to build and deploy a minimal and simple full-stack cloud-native application using modern and trending technologies such as React, Golang, and Kubernetes/OpenShift. 
 
 ## Setup the project
 #### Running the application using `docker compose up`
@@ -38,3 +38,21 @@ The add task page contains a form where users can input details for a new task, 
 
 ![Screenshot](screenshots/screenshot_5.png)
 
+## Deploy to Kubernetes/OpenShift
+- Build the backend and frontend applications using the `Dockerfile.prod` in each folder, and push to a registry of your choice.
+- Update the images in the backend and frontend manifests to match the names of your Docker images.
+ - Update the `<namespace>` in the k8-manifests files to match your project namespace.
+- Log in to the OpenShift cluster. See the following link on how to get free tier access to the OpenShift sandbox cluster.
+- Get the token from the "Copy login command" on the maskhead > profile name menu and log in using CLI. Then apply the k8-manifests files. Alternatively, you can use the Import YAML editor feature on the OpenShift cluster to upload the k8-manifests files.
+- Create the database in the MySQL pod. You can use the Terminal tab on the pod details page to access the MySQL pod. Enter the MySQL username and password. See the syntax below:
+  - Create the database in the MySQL pod container.
+  - Exec into the MySQL pod container and run the following command:
+    ```
+    mysql -u root -p
+    ```
+  - Enter the password value encoded in the mysql-secret resource: password
+    ```
+    CREATE DATABASE taskmanager;
+    ```
+  Note, the name of the database should match the name in the mysql-secret.yaml.
+- Finally, copy the backend exposed route. You can find it on the Route details page under the location field, and update the frontend deployment `env` variable `REACT_APP_BACKEND_URL` value to whatever your backend URL is. Then, wait for the update to take place or delete the frontend pod so that it is recreated with the updated `env` variable. Visit the frontend URL. You should see the running application.
