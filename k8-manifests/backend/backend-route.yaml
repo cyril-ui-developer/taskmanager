@@ -1,8 +1,8 @@
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: <namespace>
-  namespace: cajieh-dev
+  name: backend-route
+  namespace: <namespace>
   labels:
     app: backend
 spec:

@@ -4,7 +4,7 @@ metadata:
   creationTimestamp: null
   labels:
     app: backend
-  name: backend
+  name: backend-svc
   namespace: <namespace>
 spec:
   ports:
