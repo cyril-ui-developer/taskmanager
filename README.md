@@ -6,16 +6,16 @@ TodayTM is a minimal and simple task management application designed to help you
 #### Running the application using `docker compose up`
 - Clone the repository
 - Run `docker compose up` to start the three services namely db, backend and frontend. The Docker Compose is use to orchestrate the Frontend, Go Backend API and MySQL services.
-- The backend API is avaialable at "http://localost:4000" and frontend is at "http://localhost:300"
+- The backend API is avaialable at "http://localost:4000" and frontend is at "http://localhost:3000"
 
-#### Running each services in the application separating
+#### Running each services in the application separately
 - Stop and remove the docker containers for the services if you ran `docker compose up` earlier
 - Change to the project directory "/taskmanager/backend" and run `docker compose up` to start the MySQL server
 ```
 cd /taskmanager/backend
 docker compose up
 ```
-- Change to the backend directory "/taskmanager/backend"
+- Open another terminal, and change to the backend directory "/taskmanager/backend"
 - Run `go get` to fetch and install backend dependencies
 - Run `go run .` to start the Go backend API server on locahost port 4000
 - Open another terminal, and change to "/taskmanager/frontend"
@@ -39,7 +39,7 @@ The add task page contains a form where users can input details for a new task, 
 ![Screenshot](screenshots/screenshot_5.png)
 
 ## Deploy the TodayTM fullstack application onto the OpenShift Container Platform
-Since the motivation behind this project is for demonstration, we will deploy the application onto the OpenShift sandbox, which offers a free tier version for experimentation. See the following link on how to get free tier access to the OpenShift sandbox cluster.
+Since the motivation behind this project is for demonstration, we will deploy the application onto the OpenShift sandbox, which offers a free tier version for experimentation. See the following link on how to get free tier access to the OpenShift sandbox cluster. After you have log into OpenShift sandbox cluster, then follow the instructions below to deploy the application to the cluster:
 - Build the backend and frontend applications using the `Dockerfile.prod` in each folder, and push to a registry of your choice.
 - Update the images in the backend and frontend manifests to match the names of your Docker images.
  - Update the `<namespace>` in the k8-manifests files to match your project namespace.
@@ -54,5 +54,5 @@ Since the motivation behind this project is for demonstration, we will deploy th
     ```
     CREATE DATABASE taskmanager;
     ```
-  Note, the name of the database should match the name in the mysql-secret.yaml.
+  Note, the name of the database should match the name in the "database/secret.yaml".
 - Finally, copy the backend exposed route. You can find it on the Route details page under the location field, and update the frontend deployment `env` variable `REACT_APP_BACKEND_URL` value to whatever your backend URL is. Then, wait for the update to take place or delete the frontend pod so that it is recreated with the updated `env` variable. Visit the frontend URL. You should see the running application.
