@@ -38,12 +38,12 @@ The add task page contains a form where users can input details for a new task, 
 
 ![Screenshot](screenshots/screenshot_5.png)
 
-## Deploy to Kubernetes/OpenShift
+## Deploy the TodayTM fullstack application onto the OpenShift Container Platform
+Since the motivation behind this project is for demonstration, we will deploy the application onto the OpenShift sandbox, which offers a free tier version for experimentation. See the following link on how to get free tier access to the OpenShift sandbox cluster.
 - Build the backend and frontend applications using the `Dockerfile.prod` in each folder, and push to a registry of your choice.
 - Update the images in the backend and frontend manifests to match the names of your Docker images.
  - Update the `<namespace>` in the k8-manifests files to match your project namespace.
-- Log in to the OpenShift cluster. See the following link on how to get free tier access to the OpenShift sandbox cluster.
-- Get the token from the "Copy login command" on the maskhead > profile name menu and log in using CLI. Then apply the k8-manifests files. Alternatively, you can use the Import YAML editor feature on the OpenShift cluster to upload the k8-manifests files.
+- Log in to the OpenShift cluster. Get a token from the "Copy login command" in the profile menu on the Masthead toolbar. Copy the login command and execute it in a CLI terminal. Then apply the k8-manifests files that contain all the resources used for the deployment of the application. Alternatively, you can use the Import YAML (+) editor feature also located on the Masthead to upload the k8-manifests files.
 - Create the database in the MySQL pod. You can use the Terminal tab on the pod details page to access the MySQL pod. Enter the MySQL username and password. See the syntax below:
   - Create the database in the MySQL pod container.
   - Exec into the MySQL pod container and run the following command:
