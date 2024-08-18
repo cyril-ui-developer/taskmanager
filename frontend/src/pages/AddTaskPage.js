@@ -14,7 +14,6 @@ const AddTaskPage = ({ onAddTaskHandler }) => {
 
   const handleOnInputChange = (event) => {
     event.preventDefault();
-    console.log(event.target.value, formValues);
     setFormValues({
       ...formValues,
       [event.target.name]: event.target.value,
