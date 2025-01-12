@@ -17,10 +17,6 @@ function App() {
   const [tasks, setTasks] = useState([]);
   const {
     data: tasksData,
-    // isLoading,
-    // isSuccess,
-    //isError,
-    // error,
   } =  useGetTasksQuery();
 
   const [addTask] =  useAddTaskMutation();

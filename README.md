@@ -1,6 +1,6 @@
 # TodayTM
 ## About the project
-TodayTM is a minimal and simple task management application designed to help you efficiently manage all your daily tasks. The motivation behind this project is to demonstrate how to build and deploy a minimal and simple full-stack cloud-native application using modern and trending technologies such as React, Golang, and Kubernetes/OpenShift. 
+TodayTM application project is a minimal and simple task management application designed to help you efficiently manage all your daily tasks. The motivation behind this project is to demonstrate how to build and deploy a minimal and simple full-stack cloud-native application using modern and trending technologies such as React, Golang, and Kubernetes/OpenShift. 
 
 ## Setup the project
 #### Running the application using `docker compose up`
@@ -56,3 +56,27 @@ Since the motivation behind this project is for demonstration, we will deploy th
     ```
   Note, the name of the database should match the name in the "database/secret.yaml".
 - Finally, copy the backend exposed route. You can find it on the Route details page under the location field, and update the frontend deployment `env` variable `REACT_APP_BACKEND_URL` value to whatever your backend URL is. Then, wait for the update to take place or delete the frontend pod so that it is recreated with the updated `env` variable. Visit the frontend URL. You should see the running application.
+
+## Description of the Golang with Fiber RESTFul API
+The project contains three subdirectories, namely backend, frontend, and k8-manifests, with comments added to briefly describe the code in each file. The following highlights the functions of each file:
+
+1. main.go 
+This is the entry point of the application. It initializes the Fiber app, sets up routes, connects to the database, and starts the server.
+
+2. database.go 
+This file contains the logic for connecting to the database. It includes functions to initialize the database connection and handle any database-related configurations.
+
+3. models/task.go 
+This file defines the Task model, which represents the structure of a task in the database. It includes fields for the task's properties and any necessary annotations for the ORM (Object-Relational Mapping) library.
+
+4. handlers/task_handler.go
+This file contains the handler functions for the task-related routes. These functions handle the HTTP requests and interact with the database to perform CRUD operations.
+
+5. routes/routes.go 
+This file sets up the routes for the application. It maps URL paths to the corresponding handler function in step 4
+
+6. config/config.go
+The config.go file is responsible for loading configuration settings from environment variables, typically stored in a .env file. This file uses the godotenv package to load environment variables from the .env file into the application's environment, making them accessible via the os.Getenv function.
+
+7. .env
+The .env file is used to store environment variables for your application. These variables are typically configuration settings that your application needs to run, such as database connection details, API keys, and other sensitive information.

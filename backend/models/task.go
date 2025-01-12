@@ -4,6 +4,7 @@ import (
 	"time"
 )
 
+// Task represents a task in the task manager application
 type Task struct {
 	ID            uint      `json:"id"`
 	CreatedAt     time.Time `json:"createdAt"`
